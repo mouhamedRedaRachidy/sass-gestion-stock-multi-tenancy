@@ -8,6 +8,7 @@ import com.rachidy.sassgestionstockapp.requests.CategoryRequest;
 import com.rachidy.sassgestionstockapp.responses.CategoryResponse;
 import com.rachidy.sassgestionstockapp.services.CategoryService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,7 @@ import java.util.Optional;
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
