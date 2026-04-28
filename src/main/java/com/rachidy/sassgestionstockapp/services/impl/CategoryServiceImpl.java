@@ -2,6 +2,7 @@ package com.rachidy.sassgestionstockapp.services.impl;
 
 import com.rachidy.sassgestionstockapp.common.PageResponse;
 import com.rachidy.sassgestionstockapp.entities.Category;
+import com.rachidy.sassgestionstockapp.exceptions.DuplicateResourceException;
 import com.rachidy.sassgestionstockapp.mappers.CategoryMapper;
 import com.rachidy.sassgestionstockapp.repositories.CategoryRepository;
 import com.rachidy.sassgestionstockapp.requests.CategoryRequest;
@@ -79,7 +80,7 @@ public class CategoryServiceImpl implements CategoryService {
         final Optional<Category>existing=this.categoryRepository.findCategoryByNameIgnoreCase(categoryName);
         if(existing.isPresent()){
             log.debug("category name is already exist");
-            throw new RuntimeException("Category name is already exist");
+            throw new DuplicateResourceException("Category name is already exist");
         }
     }
 }

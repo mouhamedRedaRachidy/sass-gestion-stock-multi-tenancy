@@ -3,6 +3,7 @@ package com.rachidy.sassgestionstockapp.services.impl;
 import com.rachidy.sassgestionstockapp.common.PageResponse;
 import com.rachidy.sassgestionstockapp.entities.Category;
 import com.rachidy.sassgestionstockapp.entities.Product;
+import com.rachidy.sassgestionstockapp.exceptions.DuplicateResourceException;
 import com.rachidy.sassgestionstockapp.mappers.ProductMapper;
 import com.rachidy.sassgestionstockapp.repositories.CategoryRepository;
 import com.rachidy.sassgestionstockapp.repositories.ProductRepository;
@@ -84,7 +85,7 @@ public class ProductServiceImpl implements ProductService {
         final Optional<Product>existingProduct=this.productRepository.findProductByReference(reference);
         if(existingProduct.isPresent()){
             log.debug("Product is already exist");
-            throw new RuntimeException("Product is already exist");
+            throw new DuplicateResourceException("Product is already exist");
         }
     }
 
