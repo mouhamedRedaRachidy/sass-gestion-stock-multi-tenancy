@@ -55,6 +55,8 @@
         private HttpStatus getHttpStatus(final BusinessException ex) {
             if (ex instanceof DuplicateResourceException){
                 return HttpStatus.CONFLICT;
+            }if(ex instanceof TenantProvisonException){
+                return HttpStatus.INTERNAL_SERVER_ERROR;
             }
             return HttpStatus.BAD_REQUEST;
         }

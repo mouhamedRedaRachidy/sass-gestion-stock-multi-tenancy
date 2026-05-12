@@ -17,6 +17,7 @@ package com.rachidy.sassgestionstockapp.config;
 
 public class TenantContext {
     private static final ThreadLocal<String> CURRENT_TENANT = new ThreadLocal<>();
+    private static final ThreadLocal<String> CURRENT_SCHEMA = new ThreadLocal<>();
 
     /**
      * Definit l'identifiant du tenant pour le thread courant.
@@ -24,6 +25,8 @@ public class TenantContext {
     public static void setCurrentTenant(final String tenant){
         CURRENT_TENANT.set(tenant);
     }
+    public static void setCurrentSchema(final String tenant) {CURRENT_SCHEMA.set(tenant);}
+
 
     /**
      * Recupere l'identifiant du tenant pour le thread courant.
@@ -31,6 +34,7 @@ public class TenantContext {
     public static String getCurrentTenant(){
         return CURRENT_TENANT.get();
     }
+    public static String getCurrenSchema(){return CURRENT_SCHEMA.get();}
 
     /**
      * Nettoie le tenant du thread courant.
@@ -40,5 +44,8 @@ public class TenantContext {
      */
     public static void clear(){
         CURRENT_TENANT.remove();
+        CURRENT_SCHEMA.remove();
     }
+
+
 }

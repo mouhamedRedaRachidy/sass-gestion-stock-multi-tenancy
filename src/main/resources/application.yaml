@@ -48,3 +48,10 @@ spring:
 #Server  Configuration
 server:
   port: ${SERVER_PORT:8080}
+
+#Jwt Configuration
+app:
+  jwt:
+    private_key_path: classpath:certs/private.pem
+    public_key_path: classpath:certs/public.pem
+    expiration_date: 8640000

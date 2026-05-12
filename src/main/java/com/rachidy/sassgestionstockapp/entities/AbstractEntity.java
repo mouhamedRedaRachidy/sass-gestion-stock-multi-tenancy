@@ -24,20 +24,11 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @SuperBuilder
 @EntityListeners(AuditingEntityListener.class)
-@FilterDef(
-        name = "tenantFilter",
-        parameters = @ParamDef(name = "tenantId",type = String.class),
-        defaultCondition = "tenant_id = :tenantId"
-)
-@Filter(name = "tenantFilter")
 public class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false,updatable = false)
     private String id;
-
-    @Column(name = "tenant_id",nullable = false)
-    private String tenantId;
 
     @CreatedDate
     @Column(name = "created_at",nullable = false,updatable = false)
@@ -66,9 +57,5 @@ public class AbstractEntity {
         if(this.createdBy == null){
             this.createdBy= "SYSTEM";
         }
-        if(this.tenantId == null){
-            this.tenantId = TenantContext.getCurrentTenant();
-        }
-
     }
 }
